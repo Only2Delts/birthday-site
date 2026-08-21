@@ -13,13 +13,13 @@
         themeToggle.className = 'theme-toggle';
         themeToggle.id = 'themeToggle';
         themeToggle.setAttribute('aria-label', 'Toggle dark mode');
-        themeToggle.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        themeToggle.textContent = document.body.classList.contains('dark-mode') ? 'Light Mode' : 'Dark Mode';
         document.body.appendChild(themeToggle);
 
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             const isDark = document.body.classList.contains('dark-mode');
-            themeToggle.textContent = isDark ? '☀️' : '🌙';
+            themeToggle.textContent = isDark ? 'Light Mode' : 'Dark Mode';
             localStorage.setItem('theme', isDark ? 'dark' : 'light');
         });
     });

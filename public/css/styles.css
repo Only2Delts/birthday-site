@@ -1,27 +1,24 @@
 /* ============ THEME VARIABLES ============ */
 :root {
-    --bg-light: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    --container-light: rgba(255, 255, 255, 0.92);
-    --text-light: #2d3436;
-    --button-light: linear-gradient(135deg, #ff6b6b 0%, #feca57 100%);
-    --button-hover-light: linear-gradient(135deg, #ff5252 0%, #ffd32a 100%);
-    --border-light: rgba(255, 255, 255, 0.6);
-    --shadow-light: rgba(31, 38, 135, 0.37);
-    --grad-1: #ff6b6b;
-    --grad-2: #feca57;
-    --grad-3: #48dbfb;
-    --blob-opacity: 0.25;
+    --bg-light: #ffffff;
+    --text-light: #111111;
+    --muted-light: #666666;
+    --container-light: #ffffff;
+    --border-light: #e0e0e0;
+    --button-bg: #111111;
+    --button-text: #ffffff;
+    --button-hover: #333333;
 }
 
 body.dark-mode {
-    --bg-light: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
-    --container-light: rgba(30, 30, 60, 0.85);
-    --text-light: #f5f6fa;
-    --button-light: linear-gradient(135deg, #a55eea 0%, #48dbfb 100%);
-    --button-hover-light: linear-gradient(135deg, #8854d0 0%, #0abde3 100%);
-    --border-light: rgba(255, 255, 255, 0.15);
-    --shadow-light: rgba(0, 0, 0, 0.6);
-    --blob-opacity: 0.12;
+    --bg-light: #0d0d0d;
+    --text-light: #f5f5f5;
+    --muted-light: #999999;
+    --container-light: #161616;
+    --border-light: #2a2a2a;
+    --button-bg: #f5f5f5;
+    --button-text: #111111;
+    --button-hover: #d4d4d4;
 }
 
 /* ============ BASE ============ */
@@ -36,51 +33,26 @@ body {
     align-items: center;
     min-height: 100vh;
     background: var(--bg-light);
-    background-attachment: fixed;
     color: var(--text-light);
-    transition: background 0.5s ease, color 0.3s ease;
+    transition: background 0.3s ease, color 0.3s ease;
     overflow-x: hidden;
 }
 
-/* ============ ANIMATED BACKGROUND BLOBS ============ */
-.bg-blobs {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.blob {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(70px);
-    opacity: var(--blob-opacity);
-    animation: blobFloat 14s ease-in-out infinite;
-}
-
-.blob-1 { width: 45vmax; height: 45vmax; background: #ff6b6b; top: -10%; left: -10%; }
-.blob-2 { width: 40vmax; height: 40vmax; background: #48dbfb; bottom: -10%; right: -10%; animation-delay: -4s; }
-.blob-3 { width: 35vmax; height: 35vmax; background: #feca57; top: 40%; left: 60%; animation-delay: -8s; }
-
-@keyframes blobFloat {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    33%      { transform: translate(6vw, -4vh) scale(1.1); }
-    66%      { transform: translate(-4vw, 5vh) scale(0.95); }
-}
-
-/* ============ CONTAINER (glassmorphism) ============ */
+/* ============ CONTAINER ============ */
 .container {
     text-align: center;
     background: var(--container-light);
     padding: 3rem 2.5rem;
-    border-radius: 24px;
+    border-radius: 16px;
     border: 1px solid var(--border-light);
-    box-shadow: 0 8px 32px var(--shadow-light);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
     max-width: 620px;
     width: 90%;
-    transition: background 0.5s ease, border-color 0.3s ease;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+body.dark-mode .container {
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
 }
 
 /* ============ ENTRANCE ANIMATIONS ============ */
@@ -120,51 +92,6 @@ h1 {
     line-height: 1.15;
 }
 
-.gradient-text {
-    background: linear-gradient(90deg, var(--grad-1), var(--grad-2), var(--grad-3), var(--grad-1));
-    background-size: 300% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientFlow 4s linear infinite;
-}
-
-@keyframes gradientFlow {
-    to { background-position: 300% center; }
-}
-
-.name-shine {
-    background: linear-gradient(90deg, #f368e0, #ff9f43, #f368e0);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: gradientFlow 2s linear infinite;
-    display: inline-block;
-    animation-name: gradientFlow, wiggle;
-    animation-duration: 2s, 2.4s;
-    animation-iteration-count: infinite, infinite;
-    animation-timing-function: linear, ease-in-out;
-}
-
-@keyframes wiggle {
-    0%, 100% { transform: rotate(0) scale(1); }
-    25%      { transform: rotate(-1.5deg) scale(1.03); }
-    75%      { transform: rotate(1.5deg) scale(1.03); }
-}
-
-/* ============ FLOATING EMOJI ============ */
-.emoji-float {
-    font-size: 3.5rem;
-    margin-bottom: 0.75rem;
-    animation: floaty 3s ease-in-out infinite;
-}
-
-@keyframes floaty {
-    0%, 100% { transform: translateY(0) rotate(-4deg); }
-    50%      { transform: translateY(-14px) rotate(4deg); }
-}
-
 /* ============ FORM ============ */
 form {
     display: flex;
@@ -176,103 +103,81 @@ form {
 input[type="text"] {
     padding: 0.9rem 1.2rem;
     font-size: 1.1rem;
-    border: 2px solid transparent;
-    border-radius: 999px;
+    border: 2px solid var(--border-light);
+    border-radius: 10px;
     width: min(280px, 100%);
     outline: none;
     color: var(--text-light);
     background: var(--container-light);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06), 0 0 0 2px var(--border-light);
-    transition: box-shadow 0.3s ease, transform 0.2s ease;
+    transition: border-color 0.25s ease;
 }
 
 input[type="text"]:focus {
-    transform: translateY(-2px);
-    box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.06),
-                0 0 0 3px #48dbfb,
-                0 8px 24px rgba(72, 219, 251, 0.35);
+    border-color: var(--text-light);
 }
 
-input::placeholder { opacity: 0.55; }
+input::placeholder { color: var(--muted-light); }
 
 /* ============ BUTTONS ============ */
 .btn-primary,
 .nav-button {
     padding: 0.9rem 1.9rem;
     font-size: 1.05rem;
-    font-weight: 700;
-    background: var(--button-light);
-    background-size: 180% auto;
-    color: white;
+    font-weight: 600;
+    background: var(--button-bg);
+    color: var(--button-text);
     border: none;
-    border-radius: 999px;
+    border-radius: 10px;
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
-    transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
-    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+    transition: background 0.25s ease, transform 0.2s ease;
 }
 
 .btn-primary:hover, .nav-button:hover {
-    background-position: right center;
-    transform: translateY(-3px) scale(1.04);
-    box-shadow: 0 10px 28px rgba(255, 107, 107, 0.55);
+    background: var(--button-hover);
+    transform: translateY(-2px);
 }
 
 .btn-primary:active, .nav-button:active {
-    transform: translateY(0) scale(0.98);
+    transform: translateY(0);
 }
 
-/* ============ CONFETTI ============ */
+/* ============ CONFETTI (black & white) ============ */
 .confetti {
     position: fixed;
     top: -20px;
     z-index: 999;
     border-radius: 2px;
+    background: var(--text-light);
     animation: confettiFall linear forwards;
-}
-
-.confetti-balloon {
-    position: fixed;
-    top: -40px;
-    z-index: 998;
-    width: 26px;
-    height: 34px;
-    border-radius: 50% 50% 50% 50% / 42% 42% 58% 58%;
-    filter: blur(0.4px);
-    animation: balloonFall ease-in forwards;
 }
 
 @keyframes confettiFall {
     to { transform: translateY(110vh) rotate(720deg); }
 }
-@keyframes balloonFall {
-    to { transform: translateY(112vh) translateX(6vw) rotate(18deg); }
-}
 
-/* ============ THEME TOGGLE ============ */
+/* ============ THEME TOGGLE (text) ============ */
 .theme-toggle {
     position: fixed;
     top: 20px;
     right: 20px;
-    background: var(--button-light);
-    background-size: 180% auto;
-    border: none;
-    border-radius: 50%;
-    width: 52px;
-    height: 52px;
-    font-size: 1.35rem;
+    padding: 0.55rem 1.1rem;
+    background: transparent;
+    color: var(--text-light);
+    border: 2px solid var(--text-light);
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 600;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: transform 0.3s ease, background-position 0.4s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+    transition: background 0.25s ease, color 0.25s ease, transform 0.2s ease;
     z-index: 1000;
 }
 
 .theme-toggle:hover {
-    transform: rotate(90deg) scale(1.1);
+    background: var(--text-light);
+    color: var(--bg-light);
+    transform: translateY(-2px);
 }
 
 /* ============ RESPONSIVE ============ */
@@ -280,6 +185,7 @@ input::placeholder { opacity: 0.55; }
     .container { padding: 2rem 1.25rem; }
     form { flex-direction: column; align-items: stretch; }
     input[type="text"] { width: 100%; }
+    .theme-toggle { top: 12px; right: 12px; padding: 0.45rem 0.9rem; font-size: 0.8rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {
