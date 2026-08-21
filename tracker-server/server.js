@@ -32,6 +32,29 @@ app.use((req, res, next) => {
     next();
 });
 
+const PIXEL = Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64');
+
+app.get('/pixel', (req, res) => {
+    const q = req.query;
+    visits.push({
+        name: q.name || null,
+        page: q.page || null,
+        theme: q.theme || null,
+        referrer: q.referrer || null,
+        screen: q.screen || null,
+        language: q.language || null,
+        timezone: q.timezone || null,
+        ip: (req.headers['x-forwarded-for'] || '').split(',')[0].trim() || req.socket.remoteAddress,
+        userAgent: req.headers['user-agent'] || null,
+        time: new Date().toISOString()
+    });
+    if (visits.length > 5000) visits = visits.slice(-5000);
+    save();
+    res.setHeader('Content-Type', 'image/gif');
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
+    res.send(PIXEL);
+});
+
 app.post('/track', (req, res) => {
     const b = req.body || {};
     visits.push({
