@@ -3,15 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday</title>
+    <title>Happy Birthday!</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
-    <div class="container">
-        <h1 id="birthdayMessage">Happy Birthday!</h1>
-        <a href="respect.html" class="nav-button">Next</a>
+<body class="party-page">
+    <div class="bg-blobs" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
     </div>
-    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">🌓</button>
+    <div class="container pop-in">
+        <h1 id="birthdayMessage" class="gradient-text bounce-in">Happy Birthday!</h1>
+        <a href="respect.html" class="nav-button btn-primary">Next →</a>
+    </div>
+    <script src="js/theme.js"></script>
     <script src="js/birthday.js"></script>
 </body>
 </html>
