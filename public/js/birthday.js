@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', function() {
     const message = document.getElementById('birthdayMessage');
     message.textContent = `Happy Birthday ${name}!`;
 
-    for (let i = 0; i < 120; i++) {
-        setTimeout(createConfetti, Math.random() * 2500);
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!reducedMotion) {
+        for (let i = 0; i < 120; i++) {
+            setTimeout(createConfetti, Math.random() * 2500);
+        }
     }
 
     function createConfetti() {
